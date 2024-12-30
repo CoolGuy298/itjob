@@ -1,18 +1,30 @@
-# Dockerfile for MERN Stack
 FROM node:16-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY server/package*.json ./
+# Copy and install server dependencies
+COPY server/package*.json ./server/
+WORKDIR /app/server
 RUN npm install
 
-# Copy the rest of the application
+# Copy and install client dependencies
+WORKDIR /app
+COPY client/package*.json ./client/
+WORKDIR /app/client
+RUN npm install
+
+# Copy the entire application
+WORKDIR /app
 COPY . .
 
-# Expose port
-EXPOSE 5000
+# Build client
+WORKDIR /app/client
+RUN npm run build
 
-# Start the server
-CMD ["npm", "start"]
+# Expose ports for server and client
+EXPOSE 5000
+EXPOSE 5173
+
+# Start both server and client
+CMD ["sh", "-c", "npm start --prefix /app/server & npm run dev --prefix /app/client"]
