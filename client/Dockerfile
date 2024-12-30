@@ -3,7 +3,7 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-COPY COPY package.json /usr/src/app/
+COPY package*.json ./
 RUN npm install
 
 COPY . .
