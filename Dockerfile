@@ -1,5 +1,5 @@
 # Dockerfile for MERN Stack
-FROM node:14-alpine
+FROM node:16-alpine
 
 # Set working directory
 WORKDIR /app
