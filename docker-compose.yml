@@ -10,7 +10,6 @@ services:
     build: ./server
     ports:
       - "5000:5000"
-    environment:
-      - DB_URL=mongodb+srv://trung2982002:trung298@cluster0.p6ljpbr.mongodb.net/?retryWrites=true&w=majority
+
     depends_on:
       - client
