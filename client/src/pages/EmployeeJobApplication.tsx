@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '~/components/ui/button';
 import { deleteJobApplication, searchJobApplicationsByEmployeeId, downloadCV } from '~/services/api';
 import { RootState } from '~/store';
-import { useNavigate } from 'react-router-dom';
-import { searchJobs } from '~/services/api';
+// import { useNavigate } from 'react-router-dom';
+// import { searchJobs } from '~/services/api';
 type JobApplication = {
   _id: string;
   employeeId: string;
@@ -34,13 +34,13 @@ type JobApplication = {
 
 const EmployeeJobApplication = () => {
   const employee = useSelector((state: RootState) => state.employeeAuth.employee);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [jobApplications, setJobApplications] = useState<JobApplication[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const [pageSize] = useState(5); // Set your desired page size
+  // const [pageSize] = useState(5); // Set your desired page size
   const [totalPages, setTotalPages] = useState(0);
-  const [searchTitle, setSearchTitle] = useState('')
+  // const [searchTitle, setSearchTitle] = useState('')
   const token = useSelector((state: RootState) => state.employeeAuth.employeeToken)
    
   

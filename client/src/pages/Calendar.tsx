@@ -1,42 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Button, Input, message } from 'antd';
 import { getAllEmployee, getAllCompany, deleteEmployee, deleteCompany } from '~/services/adminApi';
 
+export interface Employee {
+  _id: string;
+  name: string; // Ensure 'name' exists in both interfaces
+  email: string;
+  joinDate: string; // Ensure correct date type
+  companyName: string
+}
+
+export interface Employer {
+  _id: string;
+  companyName: string; // Assuming 'name' equivalent for employers
+  email: string;
+  name:string;
+  joinDate: string
+}
+
 const Calendar = () => {
-  const [activeTab, setActiveTab] = useState('employees');
-  const [employees, setEmployees] = useState([]);
-  const [employers, setEmployers] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState<'employees' | 'employers'>('employees');
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [employers, setEmployers] = useState<Employer[]>([]);
+  // const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [total, setTotal] = useState(0); // Added to handle pagination properly
+  // const [total, setTotal] = useState(0);
 
   useEffect(() => {
     fetchData();
   }, [activeTab, page]);
 
   const fetchData = async () => {
-    setLoading(true);
+    // setLoading(true);
     try {
       if (activeTab === 'employees') {
         const response = await getAllEmployee();
-        setEmployees(response.data);
-        setTotal(response.data.length); // Adjust based on total count from API
+        setEmployees(response?.data);
+        // setTotal(response?.data.length);
       } else {
         const response = await getAllCompany();
-        setEmployers(response.data);
-        setTotal(response.data.length); // Adjust based on total count from API
+        setEmployers(response?.data);
+        // setTotal(response?.data.length);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
       message.error('Failed to fetch data');
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
   const handleDelete = async (id: string) => {
-    setLoading(true);
+    // setLoading(true);
     try {
       if (activeTab === 'employees') {
         await deleteEmployee(id);
@@ -44,23 +60,24 @@ const Calendar = () => {
         await deleteCompany(id);
       }
       message.success('Deleted successfully');
-      fetchData(); // Refresh the data after deletion
+      fetchData(); 
     } catch (error) {
       console.error('Error deleting:', error);
       message.error('Error deleting data');
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
-  // Filter data based on the search query
-  const filteredData = (activeTab === 'employees' ? employees : employers).filter((item) =>
-    (activeTab === 'employees'
-        ? item.name?.toLowerCase().includes(search.toLowerCase())
-        : item.companyName?.toLowerCase().includes(search.toLowerCase())
-    ) ||
-    item.email?.toLowerCase().includes(search.toLowerCase())
-);
+  const filteredData = activeTab === 'employees'
+  ? employees.filter((item) =>
+      item.name?.toLowerCase().includes(search.toLowerCase()) ||
+      item.email.toLowerCase().includes(search.toLowerCase())
+    )
+  : employers.filter((item) =>
+      item.companyName.toLowerCase().includes(search.toLowerCase()) ||
+      item.email.toLowerCase().includes(search.toLowerCase())
+    );
 
   return (
     <div className="p-6 bg-white shadow-md rounded-lg">
@@ -71,7 +88,7 @@ const Calendar = () => {
           type={activeTab === 'employees' ? 'primary' : 'default'}
           onClick={() => {
             setActiveTab('employees');
-            setPage(1); // Reset page when switching tabs
+            setPage(1);
           }}
           className={`px-4 py-2 rounded-md ${activeTab === 'employees' ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-800'} hover:bg-blue-700`}
         >
@@ -81,7 +98,7 @@ const Calendar = () => {
           type={activeTab === 'employers' ? 'primary' : 'default'}
           onClick={() => {
             setActiveTab('employers');
-            setPage(1); // Reset page when switching tabs
+            setPage(1);
           }}
           className={`ml-4 px-4 py-2 rounded-md ${activeTab === 'employers' ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-800'} hover:bg-blue-700`}
         >
@@ -129,7 +146,6 @@ const Calendar = () => {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
       <div className="mt-4 flex justify-between items-center">
         <Button
           onClick={() => setPage(page - 1)}

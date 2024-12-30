@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 
-import bgVideo from '/bg-video.mp4'
+// import bgVideo from '/bg-video.mp4'
 import bgImage from '/employee-auth-bg.jpg'
 
 const EmployeeAuth = () => {

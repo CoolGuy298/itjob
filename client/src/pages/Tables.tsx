@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getAllJob, updateJobVisibility, getAvailableJob } from '../services/adminApi'; // Import the API functions
+import{ useState, useEffect } from 'react';
+import {  updateJobVisibility, getAvailableJob } from '../services/adminApi'; // Import the API functions
 
 const Tables = () => {
     interface JobData {
@@ -39,7 +39,7 @@ const Tables = () => {
         const fetchJobs = async () => {
             try {
                 const response = await getAvailableJob();
-                setJobs(response.data);
+                setJobs(response?.data);
             } catch (error) {
                 console.error('Error fetching jobs:', error);
             } finally {
@@ -55,7 +55,7 @@ const Tables = () => {
         try {
             const newVisibility = !currentVisibility;
             const response = await updateJobVisibility(jobId, newVisibility);
-            if (response.status === 200) {
+            if (response?.status === 200) {
                 setJobs((prevJobs) =>
                     prevJobs.map((job) =>
                         job._id === jobId ? { ...job, isVisible: newVisibility } : job

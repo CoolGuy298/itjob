@@ -8,12 +8,12 @@ import ChatCard from '../../components/Chat/ChatCard';
 import TableOne from '../../components/Tables/TableOne';
 import { useGetAdminTotal } from '~/lib/utilsAdmin';
 
-interface ITOTAL {
-  totalCompany : number
-  totalEmployee: number
-  totalJob : number
-  totalJobApply: number 
-}
+// interface ITOTAL {
+//   totalCompany : number
+//   totalEmployee: number
+//   totalJob : number
+//   totalJobApply: number 
+// }
 const ECommerce: React.FC = () => {
 
   const total = useGetAdminTotal()

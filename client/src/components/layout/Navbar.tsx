@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { RootState } from '~/store'
@@ -9,7 +9,7 @@ import { searchJobs } from '~/services/api'
 // import { setChatSelected } from '~/features/chatSlice'
 
 const Navbar = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const token = useSelector((state: RootState) => state.employeeAuth.employeeToken)
     const employee = useSelector((state: RootState) => state.employeeAuth.employee)
     const navigate = useNavigate()

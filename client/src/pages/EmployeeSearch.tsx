@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+// import axios from 'axios';
 import { searchEmployee } from '~/services/api';
 
 const EmployeeSearch = () => {
@@ -167,11 +167,11 @@ const EmployeeSearch = () => {
                                 </p>
                                 <p>
                                     <strong>Certificates:</strong> 
-                                    {employee.certificates?.map((cert) => cert.name).join(', ') || 'N/A'}
+                                    {employee.certificates?.map((cert : any) => cert.name).join(', ') || 'N/A'}
                                 </p>
                                 <p>
                                     <strong>Education:</strong> 
-                                    {employee.education?.map((edu) => edu.degree).join(', ') || 'N/A'}
+                                    {employee.education?.map((edu : any) => edu.degree).join(', ') || 'N/A'}
                                 </p>
                             </div>
                         ))}

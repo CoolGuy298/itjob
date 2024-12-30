@@ -6,9 +6,9 @@ import SearchJobCard from '~/components/SearchJobCard'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 // import { setChatSelected, setReceiverSelected } from '../features/chatSlice'
-import { useDispatch } from 'react-redux'
-import { RootState } from '~/store'
-import { useSelector } from 'react-redux'
+// import { useDispatch } from 'react-redux'
+// import { RootState } from '~/store'
+// import { useSelector } from 'react-redux'
 
 interface JobData {
     _id: string
@@ -33,12 +33,12 @@ interface JobData {
 }
 
 const EmployeeCompanyDetail = () => {
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const navigate = useNavigate()
     const [activeTab, setActiveTab] = useState('overview')
     const { state } = useLocation()
     const [jobByCompany, setJobByCompany] = useState<JobData[]>()
-    const token = useSelector((state: RootState) => state.employeeAuth.employeeToken)
+    // const token = useSelector((state: RootState) => state.employeeAuth.employeeToken)
 
     const handleTabClick = (tab: string) => {
         setActiveTab(tab)
@@ -72,7 +72,7 @@ const EmployeeCompanyDetail = () => {
             <div className='relative z-10 w-full h-32 bg-indigo-100 bg-opacity-80 m-0'></div>
             <div className='rounded-t-lg z-20 w-full bg-gray-50 relative m-0 min-h-screen'>
                 <div className='w-2/3 mx-auto relative flex'>
-                    <div className='absolute -top-10 relative'>
+                    <div className='-top-10 relative'>
                         <div className='h-40 w-40 overflow-hidden rounded-2xl bg-white'>
                             {state.companyLogo && (
                                 <img

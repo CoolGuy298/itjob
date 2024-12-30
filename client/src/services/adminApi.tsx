@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_URL = import.meta.env.VITE_API_URL
-const userType = localStorage.getItem('userType'); 
+// const userType = localStorage.getItem('userType'); 
 
 const token = localStorage.getItem('adminToken') 
 

@@ -12,7 +12,7 @@ import {
 } from './ui/dialog'
 import { useNavigate } from 'react-router-dom'
 import { downloadCV } from '~/services/companyApi'
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Dropdown } from 'antd'
 
 interface JobApplicationCardProps {
@@ -50,7 +50,7 @@ interface JobApplicationCardProps {
 const JobApplicationCard = (props: JobApplicationCardProps) => {
     const navigate = useNavigate()
     const token = localStorage.getItem('employerToken')!
-    const [newPhase, setNewPhase] = useState(''); 
+    // const [newPhase, setNewPhase] = useState(''); 
 
     const handleAccept = async () => {
         const res = await updateJobApplicationStatus({ status: 'Accepted' }, props._id, token)

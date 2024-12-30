@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import JobApplicationCard from '~/components/JobApplicationCard'
 import Pagination from '~/components/Pagination'
 import { Input } from '~/components/ui/input'
-import { searchJobApplicationByCompanyId } from '~/services/companyApi'
+// import { searchJobApplicationByCompanyId } from '~/services/companyApi'
 import { RootState } from '~/store'
 import { searchJobApplicationByCompanyIdStatus } from '~/services/companyApi'
 interface JobApplicationCardProps {

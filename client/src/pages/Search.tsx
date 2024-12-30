@@ -7,11 +7,11 @@ import { Slider } from '~/components/ui/slider'
 import SearchJobCard from '~/components/SearchJobCard'
 import { Input } from '~/components/ui/input'
 import Pagination from '~/components/Pagination'
-import { searchJobs,searchVisibleJobs } from '~/services/api'
+import { searchVisibleJobs } from '~/services/api'
 import { Button } from '~/components/ui/button'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { SearchIcon } from 'lucide-react'
-import { Color } from 'antd/es/color-picker'
+// import { Color } from 'antd/es/color-picker'
 
 interface JobData {
     _id: string
@@ -48,7 +48,7 @@ const Search = () => {
     const [searchWorkingTime, setWorkingTime] = useState('')
     const [minSalary, setMinSalary] = useState('')
     const [maxSalary, setMaxSalary] = useState('')
-    const [sliderValue, setSliderValue] = useState([0, 10])
+    // const [sliderValue, setSliderValue] = useState([0, 10])
     const [isPopupVisible, setIsPopupVisisble] = useState(false)
 
 
@@ -193,7 +193,7 @@ const Search = () => {
 
     const handleExperienceChange = (values: number[]) => {
         setSearchExperience(`${values[0]}-${values[1]}`)
-        setSliderValue(values)
+        // setSliderValue(values)
     }
 
     const handleWorkingTimeChange = (value: string) => {
@@ -201,14 +201,14 @@ const Search = () => {
         const newWorkingTime = searchWorkingTime === value ? '' : value
         setWorkingTime(newWorkingTime)
     }
-    const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'min' | 'max') => {
-        const value = e.target.value
-        if (type === 'min') {
-            setMinSalary(value)
-        } else {
-            setMaxSalary(value)
-        }
-    }
+    // const handleSalaryChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'min' | 'max') => {
+    //     const value = e.target.value
+    //     if (type === 'min') {
+    //         setMinSalary(value)
+    //     } else {
+    //         setMaxSalary(value)
+    //     }
+    // }
 
     const handleSeeJobDetail = (result: JobData) => {
         navigate(`/job/${result._id}`, { state: result })
@@ -221,7 +221,7 @@ const Search = () => {
         setMinSalary('')
         setMaxSalary('')
         setWorkingTime('')
-        setSliderValue([0, 10]);
+        // setSliderValue([0, 10]);
     }
 
     return (

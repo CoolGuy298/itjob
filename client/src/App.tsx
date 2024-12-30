@@ -1,9 +1,9 @@
 // import "./App.css"
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { AxiosResponse } from 'axios'
-import { RootState } from './store'
-import { useSelector } from 'react-redux'
+// import { RootState } from './store'
+// import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { getCurrentEmployee } from './services/api'
 import { setToken, setEmployee } from '~/features/auth/employeeAuthSlice'
@@ -62,7 +62,7 @@ const App = () => {
 const location = useLocation()
 const isEmployeeCompanyDetail = location.pathname.includes('/companyAllDetail')
 const isHome = location.pathname === '/'
-const user = useSelector((state: RootState) => state.employeeAuth.employee || state.employerAuth.company)
+// const user = useSelector((state: RootState) => state.employeeAuth.employee || state.employerAuth.company)
 
 
 const dispatch = useDispatch()
